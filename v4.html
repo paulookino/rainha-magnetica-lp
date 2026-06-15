@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Rainha Magnética — O Sistema de 3 Passos | Filhas de Eva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+/* ─── RESET ───────────────────────────── */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#fff;color:#1a0028;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+/* ─── VARS ────────────────────────────── */
+:root{
+  --f:#C0398A;--fd:#8C1F63;--flt:#fdf5fb;
+  --gold:#D4A847;
+  --dark:#1a0028;--grey:#666;--lgrey:#f7f7f7;
+  --border:#ede0ea;
+  --white:#fff;
+}
+
+/* ─── NAV ─────────────────────────────── */
+nav{position:sticky;top:0;z-index:800;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:16px 48px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Playfair Display',serif;font-style:italic;font-size:22px;color:var(--f);font-weight:700}
+.nav-cta{background:var(--f);color:#fff;font-size:13px;font-weight:700;padding:10px 24px;border-radius:50px;letter-spacing:.3px;transition:background .2s,transform .2s}
+.nav-cta:hover{background:var(--fd);transform:translateY(-1px)}
+
+/* ─── CTA BUTTON ──────────────────────── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--f);color:#fff;font-size:16px;font-weight:800;padding:18px 48px;border-radius:50px;cursor:pointer;letter-spacing:.2px;transition:all .25s;box-shadow:0 4px 24px rgba(192,57,138,.25)}
+.btn:hover{background:var(--fd);transform:translateY(-2px);box-shadow:0 8px 36px rgba(192,57,138,.38)}
+.btn.lg{font-size:18px;padding:20px 60px}
+.btn-micro{font-size:13px;color:#aaa;margin-top:12px}
+.btn-micro span{color:var(--f)}
+
+/* ─── HERO ────────────────────────────── */
+.hero{padding:80px 24px 72px;max-width:860px;margin:0 auto;text-align:center}
+.hero-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--f);margin-bottom:22px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,60px);font-weight:900;line-height:1.12;margin-bottom:20px;color:var(--dark)}
+.hero h1 em{font-style:italic;color:var(--f)}
+.hero-lead{font-size:18px;color:var(--grey);line-height:1.8;max-width:640px;margin:0 auto 40px}
+.hero-lead strong{color:var(--dark)}
+.hero-badges{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:22px}
+.badge{display:flex;align-items:center;gap:7px;font-size:13px;color:#888;font-weight:500}
+.badge-dot{width:8px;height:8px;border-radius:50%;background:#5dba7a}
+.badge-dot.f{background:var(--f)}
+.badge-dot.g{background:var(--gold)}
+
+/* ─── BULLETS TOPO ────────────────────── */
+.bullets-wrap{background:var(--flt);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:48px 24px}
+.bullets-inner{max-width:840px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.bl{display:flex;align-items:flex-start;gap:14px;padding:22px;background:#fff;border-radius:14px;border:1px solid var(--border)}
+.bl-ico{width:40px;height:40px;border-radius:50%;background:var(--flt);border:1.5px solid #e8b0d4;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.bl h4{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:5px}
+.bl p{font-size:13px;color:var(--grey);line-height:1.6}
+
+/* ─── SECTION SHARED ──────────────────── */
+.sec{padding:88px 24px}
+.container{max-width:900px;margin:0 auto}
+.container-sm{max-width:680px;margin:0 auto}
+.container-lg{max-width:1060px;margin:0 auto}
+.tc{text-align:center}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--f);display:block;margin-bottom:14px}
+.stitle{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,46px);font-weight:900;line-height:1.18;color:var(--dark);margin-bottom:14px}
+.stitle em{font-style:italic;color:var(--f)}
+.ssub{font-size:17px;color:var(--grey);line-height:1.8;max-width:580px;margin:0 auto}
+.divider{width:48px;height:3px;background:var(--f);border-radius:2px;margin:16px auto 0;opacity:.35}
+
+/* ─── REVEAL ──────────────────────────── */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
+.rv.on{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ─── STORY SECTION ───────────────────── */
+.story-section{background:#fff;padding:88px 24px}
+.story-cards{display:flex;flex-direction:column;gap:0;max-width:880px;margin:0 auto}
+.story-card{display:grid;grid-template-columns:320px 1fr;gap:0;align-items:stretch;margin-bottom:2px;border-radius:16px;overflow:hidden;border:1px solid var(--border)}
+.story-card.rev{grid-template-columns:1fr 320px}
+.story-card.rev .sc-img{order:2}
+.story-card.rev .sc-txt{order:1}
+.sc-img{position:relative;overflow:hidden;min-height:260px}
+.sc-img img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:saturate(1.1)}
+.sc-num{position:absolute;top:16px;left:16px;font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:rgba(255,255,255,.75);background:rgba(0,0,0,.35);padding:4px 12px;border-radius:50px;backdrop-filter:blur(6px)}
+.sc-txt{padding:40px 44px;display:flex;flex-direction:column;justify-content:center;background:#fff}
+.sc-txt p{font-size:15px;color:#444;line-height:1.95;font-weight:400}
+.sc-txt p + p{margin-top:14px}
+.sc-txt strong{color:var(--dark);font-weight:700}
+.sc-txt em{font-style:italic;color:var(--f)}
+
+/* ─── PROBLEMAS ───────────────────────── */
+.prob-sec{background:var(--lgrey)}
+.prob-emojis{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;max-width:820px;margin:56px auto 0}
+.prob-item{text-align:center;padding:28px 16px;background:#fff;border-radius:16px;border:1px solid var(--border);transition:border-color .2s,transform .2s}
+.prob-item:hover{border-color:var(--f);transform:translateY(-3px)}
+.prob-emoji{font-size:36px;margin-bottom:12px}
+.prob-txt{font-size:13px;color:var(--grey);line-height:1.6;font-weight:500}
+.prob-close{max-width:580px;margin:48px auto 0;text-align:center;font-size:16px;color:var(--grey);line-height:1.8;background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px 32px}
+.prob-close strong{color:var(--dark)}
+
+/* ─── O QUE É ─────────────────────────── */
+.oque-sec{background:#fff}
+.oque-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:780px;margin:52px auto 0}
+.oque-card{border-radius:16px;padding:32px;border:1px solid var(--border)}
+.oque-card.dark{background:var(--dark);border-color:transparent}
+.oque-card.light{background:var(--flt);border-color:#e8b0d4}
+.oque-card h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:14px}
+.oque-card.dark h3{color:#fff}
+.oque-card.light h3{color:var(--dark)}
+.oque-card p{font-size:14px;line-height:1.8}
+.oque-card.dark p{color:rgba(255,255,255,.6)}
+.oque-card.light p{color:var(--grey)}
+/* metrica table */
+.metrica{max-width:640px;margin:52px auto 0;border-radius:16px;overflow:hidden;border:1px solid var(--border)}
+.m-head{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--dark);padding:14px 20px}
+.m-head span{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.m-head span:not(:first-child){text-align:center}
+.m-row{display:grid;grid-template-columns:1fr 1fr 1fr;padding:14px 20px;border-bottom:1px solid var(--border);background:#fff;font-size:14px}
+.m-row:last-child{border:none}
+.m-row:nth-child(even){background:var(--lgrey)}
+.m-label{color:var(--grey);font-weight:500}
+.m-before{text-align:center;color:#c0392b;font-weight:600}
+.m-after{text-align:center;color:var(--f);font-weight:700}
+.m-row.tot{background:var(--flt);border-top:2px solid var(--border)}
+.m-row.tot .m-label{font-weight:800;color:var(--dark)}
+
+/* ─── PARA QUEM ───────────────────────── */
+.pq-sec{background:var(--lgrey)}
+.pq-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:780px;margin:52px auto 0}
+.pq-item{display:flex;align-items:flex-start;gap:16px;background:#fff;border-radius:14px;padding:22px;border:1px solid var(--border);transition:border-color .2s}
+.pq-item:hover{border-color:var(--f)}
+.pq-n{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--border);line-height:1;flex-shrink:0;width:48px;transition:color .2s}
+.pq-item:hover .pq-n{color:#e8b0d4}
+.pq-b h4{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:5px}
+.pq-b p{font-size:13px;color:var(--grey);line-height:1.65}
+
+/* ─── OS 3 PILARES ────────────────────── */
+.pilares-sec{background:#fff}
+.pilar-list{display:flex;flex-direction:column;gap:2px;max-width:880px;margin:56px auto 0}
+.pilar{display:grid;grid-template-columns:340px 1fr;overflow:hidden;border-radius:16px;border:1px solid var(--border);transition:border-color .3s}
+.pilar:hover{border-color:#e8b0d4}
+.pilar.rev{grid-template-columns:1fr 340px}
+.pilar.rev .pilar-img{order:2}
+.pilar.rev .pilar-body{order:1}
+.pilar-img{position:relative;overflow:hidden;min-height:240px}
+.pilar-img img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:saturate(1.15)}
+.pilar-img::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 65%,#fff 100%)}
+.pilar.rev .pilar-img::after{background:linear-gradient(270deg,transparent 65%,#fff 100%)}
+.pilar-body{padding:40px 44px;display:flex;flex-direction:column;justify-content:center}
+.pilar-num{font-family:'Playfair Display',serif;font-size:72px;font-weight:900;color:var(--border);line-height:1;margin-bottom:8px}
+.pilar-tag{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--f);margin-bottom:10px}
+.pilar-body h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--dark);margin-bottom:14px}
+.pilar-body p{font-size:15px;color:var(--grey);line-height:1.85}
+
+/* ─── MÓDULOS ─────────────────────────── */
+.mods-sec{background:var(--lgrey)}
+.mod-list{display:flex;flex-direction:column;gap:14px;max-width:820px;margin:56px auto 0}
+.mod{background:#fff;border-radius:16px;border:1px solid var(--border);overflow:hidden;transition:border-color .2s}
+.mod:hover{border-color:#e8b0d4}
+.mod-head{display:flex;align-items:center;gap:20px;padding:24px 28px;cursor:pointer}
+.mod-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:var(--border);line-height:1;width:58px;flex-shrink:0;transition:color .2s}
+.mod:hover .mod-num{color:#e8b0d4}
+.mod-info{}
+.mod-lbl{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--f);margin-bottom:5px}
+.mod-info h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--dark)}
+.mod-sub{font-size:12px;color:#aaa;margin-top:2px}
+.mod-ico{margin-left:auto;font-size:20px;color:#ccc;transition:transform .3s,color .2s;flex-shrink:0}
+.mod.open .mod-ico{transform:rotate(45deg);color:var(--f)}
+.mod-body{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.mod.open .mod-body{max-height:600px}
+.mod-inner{padding:0 28px 32px 106px;border-top:1px solid var(--border)}
+.mod-inner p{font-size:14px;color:var(--grey);line-height:1.85;padding-top:20px;margin-bottom:16px}
+.mod-aulas{display:flex;flex-direction:column;gap:8px}
+.mod-aula{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:#555}
+.mod-check{width:20px;height:20px;border-radius:5px;background:linear-gradient(135deg,var(--f),var(--fd));display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:900;flex-shrink:0;margin-top:1px}
+.mod-val{margin-top:16px;font-size:12px;color:rgba(192,57,138,.5);font-weight:600}
+.mod.bonus .mod-lbl{color:var(--gold)}
+.mod.bonus .mod-check{background:linear-gradient(135deg,var(--gold),#b8922a)}
+.mod.bonus .mod-val{color:rgba(212,168,71,.6)}
+.mod.bonus:hover .mod-num{color:#f0dfa0}
+
+/* ─── EFEITOS COMPARATIVOS ────────────── */
+.efeitos-sec{background:#fff}
+.efeitos-table{max-width:700px;margin:52px auto 0;border-radius:16px;overflow:hidden;border:1px solid var(--border)}
+.et-head{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--dark)}
+.et-head span{padding:16px 20px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.et-head span:not(:first-child){text-align:center}
+.et-head span.yes{color:var(--f)}
+.et-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--border);background:#fff}
+.et-row:last-child{border:none}
+.et-row:nth-child(even){background:var(--lgrey)}
+.et-row span{padding:14px 20px;font-size:14px;display:flex;align-items:center;justify-content:center}
+.et-row span:first-child{justify-content:flex-start;color:var(--dark);font-weight:500}
+.et-no{color:#c0392b}
+.et-yes{color:var(--f);font-weight:700}
+
+/* ─── ALÉM DO CURSO ───────────────────── */
+.alem-sec{background:var(--lgrey)}
+.alem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:880px;margin:52px auto 0}
+.alem-card{background:#fff;border-radius:16px;border:1px solid var(--border);padding:32px 28px;transition:border-color .25s,transform .25s}
+.alem-card:hover{border-color:#e8b0d4;transform:translateY(-4px)}
+.alem-ico{font-size:36px;margin-bottom:16px}
+.alem-card h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--dark);margin-bottom:12px}
+.alem-list{display:flex;flex-direction:column;gap:8px}
+.alem-item{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:var(--grey);line-height:1.55}
+.alem-check{color:var(--f);font-size:14px;flex-shrink:0;margin-top:1px;font-weight:700}
+
+/* ─── DEPOIMENTOS ─────────────────────── */
+.testi-sec{background:#fff}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:880px;margin:52px auto 0}
+.testi{background:var(--lgrey);border-radius:16px;border:1px solid var(--border);padding:28px;position:relative}
+.testi-q{font-family:'Playfair Display',serif;font-size:48px;color:#e8d0e0;position:absolute;top:10px;left:18px;line-height:1}
+.testi-txt{font-size:14px;color:#555;line-height:1.8;margin-top:28px;margin-bottom:16px;font-style:italic}
+.testi-name{font-size:13px;font-weight:700;color:var(--dark)}
+.stars{color:#e8a000;font-size:13px;margin-bottom:6px}
+.testi-ph{background:var(--flt);border:1.5px dashed #e8b0d4;border-radius:16px;padding:40px 24px;text-align:center}
+.testi-ph-ico{font-size:36px;margin-bottom:12px;opacity:.35}
+.testi-ph-t{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#ccc}
+.testi-ph-s{font-size:11px;color:#ddd;margin-top:6px}
+
+/* ─── PRISCILLA ───────────────────────── */
+.pri-sec{background:var(--lgrey)}
+.pri-wrap{display:grid;grid-template-columns:1fr 360px;gap:64px;align-items:start;max-width:900px;margin:0 auto}
+.pri-content h2{font-family:'Playfair Display',serif;font-size:34px;font-weight:900;color:var(--dark);margin-bottom:20px;line-height:1.25}
+.pri-content p{font-size:15px;color:var(--grey);line-height:1.9;margin-bottom:16px}
+.pri-badges{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px}
+.pri-badge{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center}
+.pri-badge-v{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--f)}
+.pri-badge-l{font-size:11px;color:#aaa;margin-top:3px;letter-spacing:.5px;text-transform:uppercase}
+.pri-photo{position:relative}
+.pri-photo img{width:100%;border-radius:20px;border:1px solid var(--border)}
+
+/* ─── PREÇO ───────────────────────────── */
+.price-sec{background:#fff;padding:88px 24px}
+.price-wrap{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:56px;align-items:start}
+.price-left h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--dark);margin-bottom:18px;line-height:1.25}
+.price-left p{font-size:15px;color:var(--grey);line-height:1.85;margin-bottom:14px}
+.stack-rows{margin-top:28px}
+.s-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--border);font-size:14px}
+.s-row:last-child{border:none}
+.s-name{color:var(--dark)}
+.s-val{color:#ccc;text-decoration:line-through;font-size:13px}
+.s-tot{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--flt);border-radius:10px;border:1px solid var(--border);margin-top:6px}
+.s-tot-l{font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--grey);font-weight:700}
+.s-tot-v{color:#ccc;text-decoration:line-through;font-size:14px;font-weight:700}
+/* card */
+.price-card{background:#fff;border:1.5px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(192,57,138,.1)}
+.pc-head{background:linear-gradient(135deg,var(--fd),#1a0028);padding:26px 28px}
+.pc-head h3{color:#fff;font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:3px}
+.pc-head p{color:rgba(255,255,255,.5);font-size:13px}
+.pc-body{padding:28px}
+.pc-was{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#bbb;margin-bottom:4px}
+.pc-price{font-family:'Playfair Display',serif;font-size:66px;font-weight:900;color:var(--f);line-height:1}
+.pc-price sup{font-size:24px;vertical-align:super}
+.pc-inst{font-size:13px;color:#aaa;margin-top:4px;margin-bottom:18px}
+.pc-save{display:inline-flex;align-items:center;gap:6px;background:#eafff0;border:1px solid #b5f0c8;color:#1a9e4c;font-size:12px;font-weight:700;padding:6px 14px;border-radius:50px;margin-bottom:20px;letter-spacing:.5px}
+.pc-body .btn{width:100%;font-size:15px;padding:17px}
+.pc-note{font-size:12px;color:#bbb;text-align:center;margin-top:10px}
+.pc-badges{display:flex;justify-content:center;gap:16px;margin-top:18px;flex-wrap:wrap}
+.pc-badge{display:flex;align-items:center;gap:6px;font-size:12px;color:#888;font-weight:600}
+.pc-badge-ico{font-size:16px}
+/* bump */
+.bump{margin-top:20px;border:1px dashed rgba(212,168,71,.5);border-radius:14px;padding:18px;background:#fffcf0}
+.bump-tag{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:7px}
+.bump-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--dark);margin-bottom:5px}
+.bump-desc{font-size:12px;color:#888;line-height:1.6;margin-bottom:10px}
+.bump-price{font-size:15px;font-weight:800;color:var(--gold)}
+
+/* ─── GARANTIA ────────────────────────── */
+.guar-sec{background:var(--lgrey);padding:72px 24px}
+.guar{max-width:640px;margin:0 auto;background:#fff;border:1px solid var(--border);border-radius:20px;padding:44px;display:grid;grid-template-columns:100px 1fr;gap:32px;align-items:center}
+.g-seal{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,var(--f),var(--fd));display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(192,57,138,.3)}
+.g-n{font-family:'Playfair Display',serif;font-size:30px;font-weight:900;line-height:1}
+.g-l{font-size:9px;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.75)}
+.g-txt h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--dark);margin-bottom:10px}
+.g-txt p{font-size:15px;color:var(--grey);line-height:1.8}
+
+/* ─── FAQ ─────────────────────────────── */
+.faq-sec{background:#fff}
+.faq-list{max-width:680px;margin:52px auto 0;display:flex;flex-direction:column;gap:10px}
+.faq-item{border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .2s}
+.faq-item.open{border-color:#e8b0d4}
+.faq-q{padding:20px 24px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:15px;color:var(--dark);gap:14px;transition:color .2s}
+.faq-item.open .faq-q{color:var(--f)}
+.faq-ico{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;color:#aaa;font-size:18px;transition:transform .3s,background .2s,border-color .2s}
+.faq-item.open .faq-ico{transform:rotate(45deg);background:var(--f);color:#fff;border-color:var(--f)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-item.open .faq-a{max-height:260px}
+.faq-ai{padding:0 24px 20px;font-size:14px;color:var(--grey);line-height:1.85}
+
+/* ─── FINAL CTA ───────────────────────── */
+.final-sec{background:var(--dark);padding:88px 24px;text-align:center}
+.final-sec h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4.5vw,50px);font-weight:900;color:#fff;line-height:1.15;margin-bottom:14px}
+.final-sec h2 em{font-style:italic;color:var(--f)}
+.final-sec p{font-size:17px;color:rgba(255,255,255,.5);line-height:1.75;margin-bottom:44px;max-width:520px;margin-left:auto;margin-right:auto}
+.final-wrap{display:flex;flex-direction:column;align-items:center;gap:14px}
+
+/* ─── FOOTER ──────────────────────────── */
+footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding:36px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.foot-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,.35)}
+footer p{font-size:12px;color:rgba(255,255,255,.2);line-height:1.7}
+footer a{color:rgba(255,255,255,.28)}
+.foot-legal{max-width:300px;text-align:right;font-size:11px;color:rgba(255,255,255,.15);line-height:1.6}
+
+/* ─── MOBILE STICKY ───────────────────── */
+.mob-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;padding:12px 16px;background:#fff;border-top:1px solid var(--border);box-shadow:0 -4px 20px rgba(192,57,138,.08)}
+.mob-bar a{display:block;text-align:center;background:var(--f);color:#fff;font-weight:800;font-size:15px;padding:15px;border-radius:50px;text-decoration:none;box-shadow:0 4px 18px rgba(192,57,138,.3)}
+
+/* ─── RESPONSIVE ──────────────────────── */
+@media(max-width:1024px){
+  .price-wrap,.pri-wrap{grid-template-columns:1fr}
+  .pri-photo{max-width:380px;margin:0 auto}
+  .price-card{max-width:440px;margin:0 auto}
+}
+@media(max-width:768px){
+  nav{padding:14px 20px}
+  .nav-cta{display:none}
+  .sec{padding:60px 16px}
+  .bullets-inner{grid-template-columns:1fr}
+  .prob-emojis{grid-template-columns:1fr 1fr;gap:12px}
+  .oque-grid,.pq-list,.alem-grid,.testi-grid{grid-template-columns:1fr}
+  .pilar,.pilar.rev{grid-template-columns:1fr}
+  .pilar-img{height:240px}.pilar.rev .pilar-img{order:0}.pilar.rev .pilar-body{order:1}
+  .pilar-img::after,.pilar.rev .pilar-img::after{background:linear-gradient(0deg,#fff 0%,transparent 40%)}
+  .story-card,.story-card.rev{grid-template-columns:1fr}
+  .sc-img{min-height:200px}.story-card.rev .sc-img{order:0}.story-card.rev .sc-txt{order:1}
+  .mod-inner{padding:0 20px 24px}
+  .guar{grid-template-columns:1fr;text-align:center;padding:32px 20px}
+  footer{padding:28px 20px;flex-direction:column;text-align:center}.foot-legal{text-align:center;max-width:none}
+  .mob-bar{display:block}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Filhas de Eva</div>
+  <a href="#comprar" class="nav-cta">Quero o Rainha Magnética →</a>
+</nav>
+
+<!-- ═══ HERO ════════════════════════════ -->
+<section class="hero">
+  <div class="hero-tag rv">Sistema Rainha Magnética</div>
+  <h1 class="rv d1">
+    Aprenda o sistema que faz<br/>
+    seu ex pensar em você<br/>
+    <em>sem você pedir nada</em>
+  </h1>
+  <p class="hero-lead rv d2">
+    Uma forma diferente de lidar com o término que não força, não implora, não usa fórmulas prontas.<br/>
+    <strong>E justamente por isso funciona.</strong>
+  </p>
+  <div class="rv d3">
+    <a href="#comprar" class="btn lg">QUERO O RAINHA MAGNÉTICO</a>
+    <p class="btn-micro"><span>✓</span> Acesso imediato &nbsp;·&nbsp; <span>✓</span> Garantia 7 dias &nbsp;·&nbsp; <span>✓</span> R$49</p>
+  </div>
+  <div class="hero-badges rv d4">
+    <div class="badge"><div class="badge-dot f"></div>2.000+ mulheres transformadas</div>
+    <div class="badge"><div class="badge-dot"></div>97% de satisfação</div>
+    <div class="badge"><div class="badge-dot g"></div>Resultado em 7 dias</div>
+  </div>
+</section>
+
+<!-- ═══ BULLETS TOP ══════════════════════ -->
+<div class="bullets-wrap">
+  <div class="bullets-inner">
+    <div class="bl rv d1">
+      <div class="bl-ico">🎯</div>
+      <div><h4>Os 3 passos exatos</h4><p>Posicionamento, imagem e comportamento — na sequência certa e sem achismos.</p></div>
+    </div>
+    <div class="bl rv d2">
+      <div class="bl-ico">🤫</div>
+      <div><h4>Funciona sem contato</h4><p>Os dois primeiros passos não exigem uma única mensagem para ele.</p></div>
+    </div>
+    <div class="bl rv d3">
+      <div class="bl-ico">👑</div>
+      <div><h4>Você se torna o prêmio</h4><p>A transformação acontece mesmo que ele não volte — essa é a virada mais poderosa.</p></div>
+    </div>
+    <div class="bl rv d4">
+      <div class="bl-ico">🛡️</div>
+      <div><h4>Garantia total de 7 dias</h4><p>Se não sentir que valeu, devolvo 100% do seu dinheiro. Sem perguntas.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HISTÓRIA ════════════════════════ -->
+<section class="story-section">
+  <div class="container tc" style="margin-bottom:64px">
+    <span class="eyebrow rv">A história por trás do sistema</span>
+    <h2 class="stitle rv d1">Até pouco tempo atrás,<br/><em>eu fiz tudo errado.</em></h2>
+    <div class="divider rv d2"></div>
+  </div>
+  <div class="story-cards">
+
+    <!-- Card 1 -->
+    <div class="story-card rv">
+      <div class="sc-img">
+        <img src="img/step1.png" alt="História"/>
+        <div class="sc-num">01</div>
+      </div>
+      <div class="sc-txt">
+        <p>Quando ele saiu, eu fiz exatamente o que <em>toda mulher faz</em> nessa situação.</p>
+        <p>Mandei mensagem. Expliquei meus sentimentos. Fiquei disponível 24 horas esperando ele perceber o que estava perdendo. Chorei. Implorei.</p>
+        <p>E quanto mais eu corria atrás, <strong>mais ele se afastava.</strong></p>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="story-card rev rv d1">
+      <div class="sc-img">
+        <img src="img/hero.png" alt="História"/>
+        <div class="sc-num">02</div>
+      </div>
+      <div class="sc-txt">
+        <p>Até que um dia caiu a ficha.</p>
+        <p>Não era falta de amor da parte dele. Era que eu estava fazendo tudo, <em>absolutamente tudo, ao contrário.</em></p>
+        <p>Tudo que o meu instinto mandou fazer depois do término foi exatamente o que empurrou ele pra longe.</p>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="story-card rv d2">
+      <div class="sc-img">
+        <img src="img/author.png" alt="Priscilla"/>
+        <div class="sc-num">03</div>
+      </div>
+      <div class="sc-txt">
+        <p>Comecei a estudar o que realmente move um homem. Não teoria — comportamento real. Psicologia da atração. O que cria magnetismo versus o que cria afastamento.</p>
+        <p>Descobri que existe uma forma de se posicionar, de cuidar da imagem e de se comportar que ativa algo no homem que <strong>nenhuma explicação racional consegue.</strong></p>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="story-card rev rv d3">
+      <div class="sc-img">
+        <img src="img/strip1.png" alt="Resultado"/>
+        <div class="sc-num">04</div>
+      </div>
+      <div class="sc-txt">
+        <p>Testei. Refinei. Compartilhei com outras mulheres que estavam exatamente onde eu estava.</p>
+        <p>Os resultados foram consistentes demais para ser coincidência.</p>
+        <p>Não é magia. É entender que <em>atração não é sentimento, é comportamento.</em> E comportamento dá pra mudar.</p>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="story-card rv d4">
+      <div class="sc-img">
+        <img src="img/strip3.png" alt="Rainha Magnética"/>
+        <div class="sc-num">05</div>
+      </div>
+      <div class="sc-txt">
+        <p>O que nasceu desse processo foi o <strong>Rainha Magnética</strong> — um sistema de 3 passos que você aplica de dentro pra fora.</p>
+        <p>Mais de 2.000 mulheres já passaram por ele. A maioria não só reconquistou o ex — se tornou uma versão de si mesma que <em>nunca mais precisará reconquistar ninguém.</em></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ PROBLEMAS ════════════════════════ -->
+<section class="sec prob-sec">
+  <div class="container tc">
+    <span class="eyebrow rv">Você já tentou de tudo</span>
+    <h2 class="stitle rv d1">E continua sendo ignorada por ele</h2>
+    <div class="divider rv d2"></div>
+    <div class="prob-emojis">
+      <div class="prob-item rv d1"><div class="prob-emoji">📱</div><div class="prob-txt">Mandou mensagem e ele demorou ou ignorou</div></div>
+      <div class="prob-item rv d2"><div class="prob-emoji">💬</div><div class="prob-txt">Explicou os sentimentos e ele se afastou mais</div></div>
+      <div class="prob-item rv d3"><div class="prob-emoji">⏰</div><div class="prob-txt">Ficou disponível 24h e ele não valorizou</div></div>
+      <div class="prob-item rv d4"><div class="prob-emoji">😔</div><div class="prob-txt">Tentou de tudo — nada funcionou</div></div>
+      <div class="prob-item rv"><div class="prob-emoji">👀</div><div class="prob-txt">Ele segue a vida normal e você está parada</div></div>
+    </div>
+    <div class="prob-close rv d2">
+      Talvez o problema seja que você está fazendo o que <strong>todo mundo diz pra fazer</strong> depois do término.<br/>
+      E quando você faz igual, você tem os mesmos resultados — ou piores.
+    </div>
+  </div>
+</section>
+
+<!-- ═══ O QUE É ══════════════════════════ -->
+<section class="sec oque-sec">
+  <div class="container tc">
+    <span class="eyebrow rv">A diferença real</span>
+    <h2 class="stitle rv d1">O que é o Rainha Magnética<br/><em>e por que ele funciona</em></h2>
+    <div class="divider rv d2"></div>
+    <p class="ssub rv d3" style="margin-top:14px">O sistema não é sobre perseguir, explicar ou esperar. É sobre se tornar irresistível de um jeito que ele sente — mas não sabe nomear.</p>
+    <div class="oque-grid">
+      <div class="oque-card dark rv d1">
+        <h3>Sem o sistema</h3>
+        <p>Você segue o instinto — disponibilidade, explicação, espera. Quanto mais faz, mais ele se afasta. O ciclo se repete e você não entende por quê.</p>
+      </div>
+      <div class="oque-card light rv d2">
+        <h3>Com o Rainha Magnético</h3>
+        <p>Você entende o que cria atração de verdade — e aplica os 3 passos. Ele começa a pensar em você sem você ter pedido nada. A dinâmica inverte.</p>
+      </div>
+    </div>
+    <div class="metrica rv d3">
+      <div class="m-head"><span>Situação</span><span>Sem o sistema</span><span>Com Rainha Magnético</span></div>
+      <div class="m-row"><span class="m-label">Ele responde suas mensagens</span><span class="m-before">Raramente</span><span class="m-after">Ele aparece primeiro</span></div>
+      <div class="m-row"><span class="m-label">Dinâmica do relacionamento</span><span class="m-before">Você corre atrás</span><span class="m-after">Ele quer te reconquistar</span></div>
+      <div class="m-row"><span class="m-label">Sua autoestima</span><span class="m-before">Em queda</span><span class="m-after">Em ascensão</span></div>
+      <div class="m-row"><span class="m-label">Clareza sobre o que fazer</span><span class="m-before">Zero</span><span class="m-after">Passo a passo definido</span></div>
+      <div class="m-row tot"><span class="m-label">Resultado final</span><span class="m-before">Ciclo de dor</span><span class="m-after">Transformação real</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PARA QUEM ════════════════════════ -->
+<section class="sec pq-sec">
+  <div class="container tc">
+    <span class="eyebrow rv">Para quem foi criado</span>
+    <h2 class="stitle rv d1">O Rainha Magnético funciona<br/><em>para você se...</em></h2>
+    <div class="divider rv d2"></div>
+    <div class="pq-list">
+      <div class="pq-item rv d1"><div class="pq-n">01</div><div class="pq-b"><h4>O término foi recente e você não sabe como reagir</h4><p>Cada ação parece errada. Qualquer coisa que você faz parece piorar. Você precisa de um mapa.</p></div></div>
+      <div class="pq-item rv d2"><div class="pq-n">02</div><div class="pq-b"><h4>Você já tentou de tudo e ele só se afastou mais</h4><p>Mensagens, explicações, esperas. Quanto mais você tentou, mais ele recuou. Existe outro caminho.</p></div></div>
+      <div class="pq-item rv d3"><div class="pq-n">03</div><div class="pq-b"><h4>Ele está sumido ou já com outra pessoa</h4><p>A dinâmica ainda pode ser revertida — mas não pelo caminho convencional.</p></div></div>
+      <div class="pq-item rv d4"><div class="pq-n">04</div><div class="pq-b"><h4>Você quer se tornar irresistível de verdade</h4><p>Não só para ele — para qualquer relação. O magnetismo que você vai desenvolver não pertence a ninguém além de você.</p></div></div>
+      <div class="pq-item rv"><div class="pq-n">05</div><div class="pq-b"><h4>Você tem fé e quer um sistema alinhado com seus valores</h4><p>O Rainha Magnético é baseado em autoconhecimento, dignidade feminina e amor próprio. Sem manipulação.</p></div></div>
+      <div class="pq-item rv d1"><div class="pq-n">06</div><div class="pq-b"><h4>Você quer parar de depender do resultado com ele</h4><p>A transformação mais profunda do sistema é que você se torna tão completa que o resultado com ele deixa de ditar sua felicidade.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ OS 3 PILARES ═════════════════════ -->
+<section class="sec pilares-sec">
+  <div class="container tc" style="margin-bottom:64px">
+    <span class="eyebrow rv">O Sistema</span>
+    <h2 class="stitle rv d1">Os <em>3 Pilares</em> do Rainha Magnético</h2>
+    <div class="divider rv d2"></div>
+    <p class="ssub rv d3">Aplicados na sequência correta, transformam a dinâmica do relacionamento sem você precisar pedir nada.</p>
+  </div>
+  <div class="pilar-list">
+    <div class="pilar rv">
+      <div class="pilar-img"><img src="img/step1.png" alt="Posicionamento"/></div>
+      <div class="pilar-body">
+        <div class="pilar-num">01</div>
+        <div class="pilar-tag">Passo 1</div>
+        <h3>Posicionamento Espiritual</h3>
+        <p>Antes de qualquer movimento externo, você resgata quem você É — não como ex-namorada, mas como mulher. Com identidade, propósito e energia própria. Quando isso acontece, você para de mendigar atenção e começa a irradiar magnetismo. E ele sente, mesmo sem saber explicar.</p>
+      </div>
+    </div>
+    <div class="pilar rev rv d1">
+      <div class="pilar-img"><img src="img/step2.png" alt="Imagem"/></div>
+      <div class="pilar-body">
+        <div class="pilar-num">02</div>
+        <div class="pilar-tag">Passo 2</div>
+        <h3>Imagem</h3>
+        <p>A imagem não é vaidade — é linguagem. Existe uma forma específica de cuidar da sua imagem depois do término que ativa o mecanismo da saudade no homem. Não é sobre ser mais bonita. É sobre enviar a mensagem certa <em>sem dizer uma palavra.</em></p>
+      </div>
+    </div>
+    <div class="pilar rv d2">
+      <div class="pilar-img"><img src="img/step3.png" alt="Comportamento"/></div>
+      <div class="pilar-body">
+        <div class="pilar-num">03</div>
+        <div class="pilar-tag">Passo 3</div>
+        <h3>Comportamento Magnético</h3>
+        <p>Comportamento não é o que você diz — é o que você <em>para de fazer.</em> Quando você muda seu comportamento de um jeito específico, a dinâmica inverte. Ele começa a pensar em você. A sentir falta. A querer aparecer. Tudo sem você pedir nada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MÓDULOS ════════════════════════════ -->
+<section class="sec mods-sec" id="curriculum">
+  <div class="container tc" style="margin-bottom:56px">
+    <span class="eyebrow rv">O que tem no curso</span>
+    <h2 class="stitle rv d1">Tudo que você vai receber<br/>no <em>Rainha Magnético</em></h2>
+    <div class="divider rv d2"></div>
+  </div>
+  <div class="mod-list">
+
+    <div class="mod rv d1">
+      <div class="mod-head">
+        <div class="mod-num">01</div>
+        <div class="mod-info">
+          <div class="mod-lbl">Módulo 1</div>
+          <h3>Identidade de Rainha</h3>
+          <div class="mod-sub">4 aulas · A fundação de tudo</div>
+        </div>
+        <div class="mod-ico">+</div>
+      </div>
+      <div class="mod-body">
+        <div class="mod-inner">
+          <p>Você vai descobrir que toda a dor do término foi intensificada porque você perdeu contato com quem você é. Aqui você resgata isso. Sem identidade própria, os outros passos não funcionam. Esse módulo te reconstrói por dentro.</p>
+          <div class="mod-aulas">
+            <div class="mod-aula"><div class="mod-check">✓</div><span>O erro que toda mulher comete depois do término — e como parar agora</span></div>
+            <div class="mod-aula"><div class="mod-check">✓</div><span>Quem você é antes de ser a namorada dele</span></div>
+            <div class="mod-aula"><div class="mod-check">✓</div><span>Posicionamento espiritual — a base que tudo depende</span></div>
+            <div class="mod-aula"><div class="mod-check">✓</div><span>Exercício: Carta da Rainha — âncora emocional do sistema</span></div>
+          </div>
+          <div class="mod-val">Valor: R$197</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mod rv d2">
+      <div class="mod-head">
+        <div class="mod-num">02</div>
+        <div class="mod-info">
+          <div class="mod-lbl">Módulo 2</div>
+          <h3>A Imagem que Ele Não Esquece</h3>
+          <div class="mod-sub">4 aulas · Linguagem não-verbal</div>
+        </div>
+        <div class="mod-ico">+</div>
+      </div>
+      <div class="mod-body">
+        <div class="mod-inner">
+          <p>Imagem é o segundo passo do sistema — e costuma ser o mais subestimado. Aqui você aprende a usar a imagem como ferramenta estratégica. Não para agradar — para ativar.</p>
+          <div class="mod-aulas">
+            <div class="mod-aula"><div class="mod-check">✓</div><span>Por que imagem é linguagem, não vaidade</span></div>
+            <div class="mod-aula"><div class="mod-check">✓</div><span>O protocolo exato que ativa o mecanismo da saudade</span></div>
+            <div class="mod-aula"><div class="mod-check">✓</div><span>Visagismo e presença — ajustes simples que mudam a percepção</span></div>
+            <div class="mod-aula"><div class="mod-check">✓</div><span>Autocuidado como mensagem: o que ele sente mesmo longe</span></div>
+          </div>
+          <div class="mod-val">Valor: R$197</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mod rv d3">
+      <div class="mod-head">
+        <div class="mod-num">03</div>
+        <div class="mod-info">
+          <div class="mod-lbl">Módulo 3</div>
+          <h3>O Comportamento Magnético</h3>
+          <div class="mod-sub">4 aulas · O passo que muda o jogo</div>
+        </div>
+        <div class="mod-ico">+</div>
+      </div>
+      <div class="mod-body">
+        <div class="mod-inner">
+          <p>Este é o módulo que 99% das mulheres erra. Aqui você aprende o que parar de fazer imediatamente — e os comportamentos exatos que invertem a dinâmica e fazem ele querer te reconquistar.</p>
+          <div class="mod-aulas">
+            <div class="mod-aula"><div class="mod-check">✓</div><span>Os 5 comportamentos que destroem a atração — lista completa</span></div>
+            <div class="mod-aula"><div class="mod-check">✓</div><span>O silêncio estratégico: quanto tempo, o que fazer durante</span></div>
+            <div class="mod-aula"><div class="mod-check">✓</div><span>A arte de reaparecer sem parecer desesperada</span></div>
+            <div class="mod-aula"><div class="mod-check">✓</div><span>Comunicação magnética — o que revelar e o que guardar</span></div>
+          </div>
+          <div class="mod-val">Valor: R$197</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mod rv d4">
+      <div class="mod-head">
+        <div class="mod-num">04</div>
+        <div class="mod-info">
+          <div class="mod-lbl">Módulo 4</div>
+          <h3>Os 3 Passos em Ação</h3>
+          <div class="mod-sub">4 aulas · O mapa operacional</div>
+        </div>
+        <div class="mod-ico">+</div>
+      </div>
+      <div class="mod-body">
+        <div class="mod-inner">
+          <p>O mapa completo da reconquista — do momento em que você está agora até ele aparecer. Timing, fases e o que fazer em cada etapa.</p>
+          <div class="mod-aulas">
+            <div class="mod-aula"><div class="mod-check">✓</div><span>O mapa completo da reconquista — fase por fase</span></div>
+            <div class="mod-aula"><div class="mod-check">✓</div><span>Os sinais de que ele está sentindo falta</span></div>
+            <div class="mod-aula"><div class="mod-check">✓</div><span>O momento do reencontro — postura, fala, energia</span></div>
+            <div class="mod-aula"><div class="mod-check">✓</div><span>E se ele não voltar: por que você já ganhou de qualquer jeito</span></div>
+          </div>
+          <div class="mod-val">Valor: R$197</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mod rv">
+      <div class="mod-head">
+        <div class="mod-num">05</div>
+        <div class="mod-info">
+          <div class="mod-lbl">Módulo 5</div>
+          <h3>Magnetismo Permanente</h3>
+          <div class="mod-sub">3 aulas · O objetivo final</div>
+        </div>
+        <div class="mod-ico">+</div>
+      </div>
+      <div class="mod-body">
+        <div class="mod-inner">
+          <p>O objetivo não é só ele voltar. É você nunca mais precisar reconquistar ninguém. Aqui você torna as mudanças permanentes e entra em qualquer relação como rainha.</p>
+          <div class="mod-aulas">
+            <div class="mod-aula"><div class="mod-check">✓</div><span>Como tornar as mudanças um estilo de vida, não uma estratégia temporária</span></div>
+            <div class="mod-aula"><div class="mod-check">✓</div><span>Relacionamento 2.0 — como entrar em uma relação como rainha</span></div>
+            <div class="mod-aula"><div class="mod-check">✓</div><span>Nunca mais precisar reconquistar ninguém</span></div>
+          </div>
+          <div class="mod-val">Valor: R$97</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- separator -->
+    <div class="rv" style="display:flex;align-items:center;gap:16px;padding:12px 0;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#ccc">
+      <div style="flex:1;height:1px;background:var(--border)"></div>
+      BÔNUS EXCLUSIVOS
+      <div style="flex:1;height:1px;background:var(--border)"></div>
+    </div>
+
+    <div class="mod bonus rv d1">
+      <div class="mod-head">
+        <div class="mod-num" style="color:#f0dfa0">B1</div>
+        <div class="mod-info">
+          <div class="mod-lbl">Bônus 1</div>
+          <h3>O Texto que Faz Ele Pensar em Você</h3>
+          <div class="mod-sub">Scripts + 1 aula de instrução</div>
+        </div>
+        <div class="mod-ico">+</div>
+      </div>
+      <div class="mod-body">
+        <div class="mod-inner">
+          <p>Os scripts exatos de mensagem — o que enviar, quando e como — para comunicar sem parecer desesperada. Porque existe jeito certo e jeito errado, e o certo faz ele responder com saudade.</p>
+          <div class="mod-aulas">
+            <div class="mod-aula"><div class="mod-check">✓</div><span>Scripts de primeiro contato — quando e como iniciar</span></div>
+            <div class="mod-aula"><div class="mod-check">✓</div><span>Scripts de resposta para quando ele aparecer primeiro</span></div>
+            <div class="mod-aula"><div class="mod-check">✓</div><span>O que NUNCA enviar — lista completa com exemplos</span></div>
+          </div>
+          <div class="mod-val">Valor: R$97</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mod bonus rv d2">
+      <div class="mod-head">
+        <div class="mod-num" style="color:#f0dfa0">B2</div>
+        <div class="mod-info">
+          <div class="mod-lbl">Bônus 2</div>
+          <h3>Rotina dos 7 Dias da Rainha</h3>
+          <div class="mod-sub">PDF completo dia a dia</div>
+        </div>
+        <div class="mod-ico">+</div>
+      </div>
+      <div class="mod-body">
+        <div class="mod-inner">
+          <p>Protocolo diário de 7 dias para ativar o magnetismo imediatamente. O que fazer pela manhã, à tarde e à noite — e sentir os primeiros efeitos ainda na primeira semana.</p>
+          <div class="mod-aulas">
+            <div class="mod-aula"><div class="mod-check">✓</div><span>7 dias completos — manhã, tarde e noite</span></div>
+            <div class="mod-aula"><div class="mod-check">✓</div><span>Ações práticas para cada período do dia</span></div>
+            <div class="mod-aula"><div class="mod-check">✓</div><span>PDF para baixar e usar offline</span></div>
+          </div>
+          <div class="mod-val">Valor: R$67</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ EFEITOS COMPARATIVOS ══════════════ -->
+<section class="sec efeitos-sec">
+  <div class="container tc">
+    <span class="eyebrow rv">O resultado na prática</span>
+    <h2 class="stitle rv d1">Os efeitos de uma mulher<br/><em>que se tornou irresistível</em></h2>
+    <div class="divider rv d2"></div>
+    <div class="efeitos-table rv d3">
+      <div class="et-head"><span>Situação</span><span>Antes</span><span class="yes">Com Rainha Magnético</span></div>
+      <div class="et-row"><span>Autoestima</span><span class="et-no">Em queda</span><span class="et-yes">Crescendo todo dia</span></div>
+      <div class="et-row"><span>Comportamento depois do término</span><span class="et-no">Desesperado</span><span class="et-yes">Estratégico e calmo</span></div>
+      <div class="et-row"><span>Contato com ele</span><span class="et-no">Você corre atrás</span><span class="et-yes">Ele aparece primeiro</span></div>
+      <div class="et-row"><span>Imagem pessoal</span><span class="et-no">Abandonada</span><span class="et-yes">Renovada com intenção</span></div>
+      <div class="et-row"><span>Clareza sobre o que fazer</span><span class="et-no">Zero</span><span class="et-yes">Mapa completo em mãos</span></div>
+      <div class="et-row"><span>Dependência emocional dele</span><span class="et-no">Alta</span><span class="et-yes">Liberdade real</span></div>
+      <div class="et-row"><span>Identidade própria</span><span class="et-no">Perdida</span><span class="et-yes">Recuperada e fortalecida</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ALÉM DO CURSO ════════════════════ -->
+<section class="sec alem-sec">
+  <div class="container tc">
+    <span class="eyebrow rv">Além do conteúdo</span>
+    <h2 class="stitle rv d1">Você recebe o que<br/><em>ninguém mais oferece</em></h2>
+    <div class="divider rv d2"></div>
+    <div class="alem-grid">
+      <div class="alem-card rv d1">
+        <div class="alem-ico">📱</div>
+        <h3>Scripts prontos para usar</h3>
+        <div class="alem-list">
+          <div class="alem-item"><div class="alem-check">✓</div><span>Textos exatos para cada fase do processo</span></div>
+          <div class="alem-item"><div class="alem-check">✓</div><span>O que enviar quando ele aparecer primeiro</span></div>
+          <div class="alem-item"><div class="alem-check">✓</div><span>Lista completa do que nunca enviar</span></div>
+        </div>
+      </div>
+      <div class="alem-card rv d2">
+        <div class="alem-ico">🗓️</div>
+        <h3>Protocolo de 7 dias</h3>
+        <div class="alem-list">
+          <div class="alem-item"><div class="alem-check">✓</div><span>Rotina estruturada manhã, tarde e noite</span></div>
+          <div class="alem-item"><div class="alem-check">✓</div><span>Primeiros resultados ainda na semana 1</span></div>
+          <div class="alem-item"><div class="alem-check">✓</div><span>PDF para usar offline sempre que precisar</span></div>
+        </div>
+      </div>
+      <div class="alem-card rv d3">
+        <div class="alem-ico">🛡️</div>
+        <h3>Garantia total de 7 dias</h3>
+        <div class="alem-list">
+          <div class="alem-item"><div class="alem-check">✓</div><span>100% do dinheiro de volta se não sentir resultado</span></div>
+          <div class="alem-item"><div class="alem-check">✓</div><span>Sem perguntas, sem burocracia</span></div>
+          <div class="alem-item"><div class="alem-check">✓</div><span>Risco zero da sua parte</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DEPOIMENTOS ════════════════════════ -->
+<section class="sec testi-sec">
+  <div class="container tc">
+    <span class="eyebrow rv">Resultados reais</span>
+    <h2 class="stitle rv d1">Elas transformaram a dor<br/><em>em poder</em></h2>
+    <div class="divider rv d2"></div>
+    <div class="testi-grid" style="margin-top:52px">
+      <div class="testi-ph rv d1"><div class="testi-ph-ico">💬</div><div class="testi-ph-t">Depoimento 1</div><div class="testi-ph-s">Insira print ou texto de aluna</div></div>
+      <div class="testi-ph rv d2"><div class="testi-ph-ico">💬</div><div class="testi-ph-t">Depoimento 2</div><div class="testi-ph-s">Insira print ou texto de aluna</div></div>
+      <div class="testi-ph rv d3"><div class="testi-ph-ico">💬</div><div class="testi-ph-t">Depoimento 3</div><div class="testi-ph-s">Insira print ou texto de aluna</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRISCILLA ═══════════════════════ -->
+<section class="sec pri-sec">
+  <div class="container">
+    <div class="pri-wrap">
+      <div class="pri-content rv">
+        <span class="eyebrow">Quem criou o sistema</span>
+        <h2>Aprenda com quem viveu isso e encontrou o outro lado.</h2>
+        <!-- PRISCILLA: substitua pelo seu texto -->
+        <p>Eu já fui a mulher que mandou mensagem às 2h da manhã esperando resposta. Que explicou os sentimentos três vezes na mesma semana. Que ficou disponível 24 horas esperando ele perceber o que estava perdendo.</p>
+        <p>O que descobri nesse processo — sobre posicionamento, imagem e comportamento — virou o sistema que hoje já ajudou mais de 2.000 mulheres a reconquistar o ex ou se tornarem tão irresistíveis que o ex perdeu o sono pensando nelas.</p>
+        <p><strong>E o mais importante: a transformação acontece mesmo que ele não volte.</strong></p>
+        <div class="pri-badges">
+          <div class="pri-badge"><div class="pri-badge-v">2.000+</div><div class="pri-badge-l">Mulheres atendidas</div></div>
+          <div class="pri-badge"><div class="pri-badge-v">97%</div><div class="pri-badge-l">Satisfação</div></div>
+        </div>
+      </div>
+      <div class="pri-photo rv d2">
+        <img src="img/author.png" alt="Priscilla — Filhas de Eva"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PREÇO ════════════════════════════ -->
+<section class="price-sec" id="comprar">
+  <div class="container tc" style="margin-bottom:52px">
+    <span class="eyebrow rv">Investimento</span>
+    <h2 class="stitle rv d1">Você recebe tudo isso<br/><em>por R$49</em></h2>
+    <div class="divider rv d2"></div>
+  </div>
+  <div class="price-wrap container">
+    <div class="price-left rv">
+      <h2>Por que R$49 sendo que vale R$1.049?</h2>
+      <p>Porque eu quero que esse sistema chegue para a maior quantidade de mulheres possível — especialmente as que estão sofrendo agora e não têm centenas de reais pra investir.</p>
+      <p>Esse é o preço de lançamento. Quando essa janela fechar, o valor sobe. Não sei quando — mas sobe.</p>
+      <div class="stack-rows">
+        <div class="s-row"><span class="s-name">Módulo 1 — Identidade de Rainha</span><span class="s-val">R$197</span></div>
+        <div class="s-row"><span class="s-name">Módulo 2 — A Imagem que Ele Não Esquece</span><span class="s-val">R$197</span></div>
+        <div class="s-row"><span class="s-name">Módulo 3 — Comportamento Magnético</span><span class="s-val">R$197</span></div>
+        <div class="s-row"><span class="s-name">Módulo 4 — Os 3 Passos em Ação</span><span class="s-val">R$197</span></div>
+        <div class="s-row"><span class="s-name">Módulo 5 — Magnetismo Permanente</span><span class="s-val">R$97</span></div>
+        <div class="s-row"><span class="s-name">Bônus 1 — O Texto que Faz Ele Pensar</span><span class="s-val">R$97</span></div>
+        <div class="s-row"><span class="s-name">Bônus 2 — Rotina dos 7 Dias da Rainha</span><span class="s-val">R$67</span></div>
+        <div class="s-tot"><span class="s-tot-l">Valor total</span><span class="s-tot-v">R$1.049</span></div>
+      </div>
+    </div>
+    <div class="rv" style="opacity:0;transform:translateY(18px);transition:opacity .7s .2s,transform .7s .2s">
+      <div class="price-card">
+        <div class="pc-head">
+          <h3>Rainha Magnético Completo</h3>
+          <p>5 módulos · 2 bônus · acesso imediato</p>
+        </div>
+        <div class="pc-body">
+          <div class="pc-was">Seu investimento hoje</div>
+          <div class="pc-price"><sup>R$</sup>49</div>
+          <div class="pc-inst">ou 12x de R$4,90 no cartão</div>
+          <div><span class="pc-save">✓ Você economiza R$1.000</span></div>
+          <a href="LINK_CHECKOUT_AQUI" class="btn" style="font-size:15px;padding:17px">QUERO O RAINHA MAGNÉTICO</a>
+          <p class="pc-note">Acesso imediato · Pagamento seguro · Garantia 7 dias</p>
+          <div class="pc-badges">
+            <div class="pc-badge"><span class="pc-badge-ico">🛡️</span>7 Dias de Garantia</div>
+            <div class="pc-badge"><span class="pc-badge-ico">🔒</span>Compra segura</div>
+          </div>
+        </div>
+        <div class="bump">
+          <div class="bump-tag">✦ Adicione ao pedido</div>
+          <div class="bump-title">Meditação — Retorno ao Jardim</div>
+          <p class="bump-desc">Meditação guiada de reconexão com sua essência feminina. A ativação do posicionamento espiritual antes do primeiro passo.</p>
+          <div class="bump-price">+ R$19,90</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GARANTIA ═════════════════════════ -->
+<section class="guar-sec">
+  <div class="container tc" style="margin-bottom:48px">
+    <span class="eyebrow rv">Sem risco</span>
+    <h2 class="stitle rv d1">Garantia total de <em>7 dias</em></h2>
+  </div>
+  <div class="guar rv d2">
+    <div class="g-seal"><div class="g-n">7</div><div class="g-l">dias</div></div>
+    <div class="g-txt">
+      <h3>Risco zero da sua parte</h3>
+      <p>Se você acessar o Rainha Magnético, assistir as aulas e não sentir que valeu cada centavo — me manda uma mensagem e eu devolvo <strong>100% do seu dinheiro</strong>. Sem perguntas. Sem burocracia. Sem enrolação. A única pessoa arriscando aqui sou eu.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ══════════════════════════════ -->
+<section class="sec faq-sec">
+  <div class="container tc">
+    <span class="eyebrow rv">Dúvidas</span>
+    <h2 class="stitle rv d1">Perguntas frequentes</h2>
+    <div class="divider rv d2"></div>
+    <div class="faq-list">
+      <div class="faq-item rv d1">
+        <div class="faq-q">Funciona mesmo sem contato faz semanas? <div class="faq-ico">+</div></div>
+        <div class="faq-a"><div class="faq-ai">Sim. O período sem contato é o momento ideal para aplicar os 3 passos — você trabalha em si mesma enquanto cria o espaço certo para ele sentir sua falta. Os dois primeiros passos não exigem nenhum contato com ele.</div></div>
+      </div>
+      <div class="faq-item rv d2">
+        <div class="faq-q">E se ele já estiver com outra pessoa? <div class="faq-ico">+</div></div>
+        <div class="faq-a"><div class="faq-ai">O sistema funciona justamente para essa situação. Quando você aplica os 3 passos, você muda a dinâmica. Homens frequentemente se comparam, sentem nostalgia e reavaliam suas escolhas quando percebem o que perderam.</div></div>
+      </div>
+      <div class="faq-item rv d3">
+        <div class="faq-q">Preciso ter contato com ele para aplicar? <div class="faq-ico">+</div></div>
+        <div class="faq-a"><div class="faq-ai">Não. Os dois primeiros módulos são completamente independentes de contato. O terceiro módulo te dá clareza sobre quando e como ter esse contato — sem desperdiçar a oportunidade.</div></div>
+      </div>
+      <div class="faq-item rv d4">
+        <div class="faq-q">Isso vai contra minha fé ou meus valores? <div class="faq-ico">+</div></div>
+        <div class="faq-a"><div class="faq-ai">Não. O Rainha Magnético é fundamentado em autoconhecimento, dignidade feminina e amor próprio. Você não vai fazer nenhuma técnica de manipulação — vai se tornar uma mulher mais completa.</div></div>
+      </div>
+      <div class="faq-item rv">
+        <div class="faq-q">Quando recebo o acesso? <div class="faq-ico">+</div></div>
+        <div class="faq-a"><div class="faq-ai">Na hora. Assim que a compra for confirmada, você recebe o link no e-mail. Em menos de 2 minutos você já está dentro do Rainha Magnético.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ═════════════════════════ -->
+<section class="final-sec">
+  <h2 class="rv">Você merece uma história<br/><em>que termina bem.</em></h2>
+  <p class="rv d1">E os 3 passos para essa história começar estão te esperando do outro lado desse botão.</p>
+  <div class="final-wrap rv d2">
+    <a href="LINK_CHECKOUT_AQUI" class="btn lg">QUERO O RAINHA MAGNÉTICO POR R$49</a>
+    <p style="font-size:13px;color:rgba(255,255,255,.3)">Acesso imediato · Garantia 7 dias · 12x de R$4,90</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">Filhas de Eva</div>
+  <p>© 2026 Filhas de Eva · Todos os direitos reservados<br/><a href="#">Política de Privacidade</a> &nbsp;·&nbsp; <a href="#">Termos de Uso</a> &nbsp;·&nbsp; <a href="#">Suporte</a></p>
+  <p class="foot-legal">Produto digital. Resultados podem variar de acordo com o esforço e dedicação de cada pessoa. Este site não tem relação com Instagram ou Facebook.</p>
+</footer>
+
+<!-- MOBILE STICKY -->
+<div class="mob-bar">
+  <a href="#comprar">👑 Rainha Magnético — R$49 · Garantir agora</a>
+</div>
+
+<script>
+// REVEAL
+const obs = new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.isIntersecting) e.target.classList.add('on');
+}), { threshold: 0.08 });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+// Módulos accordion
+document.querySelectorAll('.mod').forEach(mod => {
+  mod.querySelector('.mod-head').addEventListener('click', () => {
+    const open = mod.classList.contains('open');
+    document.querySelectorAll('.mod.open').forEach(m => m.classList.remove('open'));
+    if (!open) mod.classList.add('open');
+  });
+});
+
+// FAQ
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const it = q.parentElement, open = it.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!open) it.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
