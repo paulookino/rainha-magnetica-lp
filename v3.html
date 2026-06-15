@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AGUARDE — Oferta Especial | Rainha Magnética</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+/* ─── RESET ──────────────────────────────────── */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#07000d;color:#fff;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+/* ─── VARS ───────────────────────────────────── */
+:root{
+  --f:#C0398A;--fb:#e040a0;--fd:#8C1F63;
+  --gold:#E8C97A;
+  --dark:#07000d;--d2:#0f0018;
+  --neon:0 0 20px rgba(192,57,138,.7),0 0 60px rgba(192,57,138,.3);
+  --ngold:0 0 20px rgba(232,201,122,.5),0 0 50px rgba(232,201,122,.2);
+}
+
+/* ─── PROGRESS BAR ───────────────────────────── */
+.prog-wrap{background:#0f0018;border-bottom:1px solid rgba(192,57,138,.2);padding:14px 24px}
+.prog-inner{max-width:700px;margin:0 auto}
+.prog-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.prog-step{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.prog-step.done{color:var(--gold)}
+.prog-pct{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:1px}
+.prog-bar{height:6px;background:rgba(255,255,255,.08);border-radius:50px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--fd),var(--f),var(--gold));border-radius:50px;width:0;transition:width 1.5s ease}
+.prog-steps{display:flex;justify-content:space-between;margin-top:8px}
+.ps{display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,.3)}
+.ps.done{color:var(--gold)}
+.ps-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15)}
+.ps.done .ps-dot{background:var(--gold);box-shadow:0 0 8px rgba(232,201,122,.6)}
+.ps.active .ps-dot{background:var(--f);box-shadow:0 0 10px rgba(192,57,138,.8);animation:ppulse .9s infinite alternate}
+.ps.active{color:#fff}
+@keyframes ppulse{from{opacity:.6}to{opacity:1}}
+
+/* ─── URGENCY STRIP ──────────────────────────── */
+.urg{background:linear-gradient(90deg,#1a0028,var(--fd),#1a0028);padding:11px 20px;text-align:center;font-size:13px;font-weight:800;letter-spacing:.5px;border-bottom:1px solid rgba(192,57,138,.3)}
+.urg-blink{animation:ublink 1s infinite alternate;color:var(--gold)}
+@keyframes ublink{from{opacity:.7}to{opacity:1}}
+.urg span{color:#fff}
+
+/* ─── HERO / HOOK ────────────────────────────── */
+.hook{padding:60px 20px 48px;text-align:center;position:relative;overflow:hidden}
+.hook::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(192,57,138,.18) 0%,transparent 70%)}
+.hook-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(232,201,122,.35);border-radius:50px;padding:7px 20px;margin-bottom:24px;position:relative;z-index:1}
+.hook-tag::before{content:'';position:absolute;inset:0;border-radius:50px;background:rgba(232,201,122,.05)}
+.hook h1{font-family:'Playfair Display',serif;font-size:clamp(30px,5.5vw,64px);font-weight:900;line-height:1.1;position:relative;z-index:1;max-width:860px;margin:0 auto 20px}
+.hook h1 .line1{display:block;color:#fff}
+.hook h1 .line2{display:block;font-style:italic;background:linear-gradient(135deg,var(--fb),var(--f),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hook-sub{font-size:18px;color:rgba(255,255,255,.55);line-height:1.75;max-width:620px;margin:0 auto 40px;position:relative;z-index:1}
+.hook-sub strong{color:#f5d0e8}
+
+/* ─── CTA ────────────────────────────────────── */
+.cta-neon{display:inline-flex;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,var(--f),var(--fd));color:#fff;font-size:17px;font-weight:900;padding:20px 52px;border-radius:50px;cursor:pointer;letter-spacing:.3px;text-transform:uppercase;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;box-shadow:var(--neon),0 8px 32px rgba(0,0,0,.6)}
+.cta-neon::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);opacity:0;transition:opacity .2s}
+.cta-neon:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 0 40px rgba(192,57,138,.9),0 0 80px rgba(192,57,138,.4),0 12px 40px rgba(0,0,0,.7)}
+.cta-neon:hover::before{opacity:1}
+.cta-neon.gold{background:linear-gradient(135deg,var(--gold),#c8a030);color:#0a0010;box-shadow:var(--ngold),0 8px 32px rgba(0,0,0,.6)}
+.cta-neon.gold:hover{box-shadow:0 0 40px rgba(232,201,122,.9),0 0 80px rgba(232,201,122,.4),0 12px 40px rgba(0,0,0,.7)}
+.cta-neon .arr{font-size:22px;transition:transform .2s}
+.cta-neon:hover .arr{transform:translateX(6px)}
+.cta-micro{font-size:13px;color:rgba(255,255,255,.3);margin-top:14px}
+.cta-micro span{color:rgba(93,255,154,.8)}
+.no-thanks{display:block;font-size:12px;color:rgba(255,255,255,.2);margin-top:22px;cursor:pointer;transition:color .2s;text-decoration:underline;text-underline-offset:3px;letter-spacing:.5px}
+.no-thanks:hover{color:rgba(255,255,255,.45)}
+
+/* ─── DIVIDER ────────────────────────────────── */
+.div-line{display:flex;align-items:center;gap:20px;max-width:700px;margin:0 auto;padding:0 20px}
+.div-line::before,.div-line::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(192,57,138,.35),transparent)}
+.div-text{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.25);white-space:nowrap}
+
+/* ─── SECTION ────────────────────────────────── */
+.sec{padding:72px 20px}
+.container{max-width:900px;margin:0 auto}
+.tc{text-align:center}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:3.5px;text-transform:uppercase;color:var(--f);display:block;margin-bottom:12px}
+.eyebrow.gold{color:var(--gold)}
+.stitle{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,46px);font-weight:900;line-height:1.15;margin-bottom:12px}
+.stitle em{font-style:italic;background:linear-gradient(135deg,var(--fb),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ssub{font-size:16px;color:rgba(255,255,255,.5);line-height:1.8;max-width:580px;margin:0 auto}
+
+/* ─── REVEAL ─────────────────────────────────── */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.on{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.45s}
+
+/* ─── ATOS / MÓDULOS ─────────────────────────── */
+.atos-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:56px}
+.ato{background:rgba(255,255,255,.03);border:1px solid rgba(192,57,138,.15);border-radius:18px;overflow:hidden;transition:border-color .3s,transform .3s,box-shadow .3s;position:relative}
+.ato::before{content:'';position:absolute;inset:0;border-radius:18px;background:linear-gradient(135deg,rgba(192,57,138,.06),transparent);opacity:0;transition:opacity .3s}
+.ato:hover{border-color:rgba(192,57,138,.5);transform:translateY(-5px);box-shadow:0 8px 40px rgba(192,57,138,.18),0 0 0 1px rgba(192,57,138,.2)}
+.ato:hover::before{opacity:1}
+.ato-img{width:100%;height:200px;object-fit:cover;object-position:center top;filter:saturate(1.3) brightness(.85)}
+.ato-img-wrap{position:relative;overflow:hidden}
+.ato-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(7,0,13,.95) 0%,transparent 55%)}
+.ato-num{position:absolute;top:16px;left:16px;z-index:2;font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--f);background:rgba(7,0,13,.8);border:1px solid rgba(192,57,138,.4);padding:4px 12px;border-radius:50px;backdrop-filter:blur(8px)}
+.ato-body{padding:24px 26px 28px}
+.ato h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:12px;line-height:1.3}
+.ato-topics{display:flex;flex-direction:column;gap:8px}
+.ato-topic{display:flex;align-items:flex-start;gap:9px;font-size:13.5px;color:rgba(255,255,255,.55);line-height:1.55}
+.ato-dot{width:5px;height:5px;border-radius:50%;background:var(--f);flex-shrink:0;margin-top:7px;box-shadow:0 0 6px rgba(192,57,138,.6)}
+.ato.bonus{border-color:rgba(232,201,122,.2)}
+.ato.bonus:hover{border-color:rgba(232,201,122,.55);box-shadow:0 8px 40px rgba(232,201,122,.14)}
+.ato.bonus .ato-num{color:var(--gold);border-color:rgba(232,201,122,.4)}
+.ato.bonus .ato-dot{background:var(--gold);box-shadow:0 0 6px rgba(232,201,122,.5)}
+.ato-full{grid-column:1/-1}
+
+/* ─── PRICE SECTION ──────────────────────────── */
+.price-sec{background:rgba(255,255,255,.02);border-top:1px solid rgba(192,57,138,.12);border-bottom:1px solid rgba(192,57,138,.12);padding:80px 20px}
+.price-card{max-width:560px;margin:0 auto;background:#0f0018;border:1px solid rgba(192,57,138,.3);border-radius:24px;overflow:hidden;box-shadow:var(--neon)}
+.pc-head{background:linear-gradient(135deg,var(--fd),#1a0028);padding:28px 32px;position:relative;overflow:hidden}
+.pc-head::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(232,201,122,.15),transparent 60%)}
+.pc-head h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:4px;position:relative;z-index:1}
+.pc-head p{font-size:13px;color:rgba(255,255,255,.5);position:relative;z-index:1}
+.pc-body{padding:32px}
+.pc-was{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.25);margin-bottom:4px}
+.pc-price{font-family:'Playfair Display',serif;font-size:72px;font-weight:900;line-height:1;background:linear-gradient(135deg,#f5d0e8,var(--f),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.pc-price sup{font-size:26px;vertical-align:super}
+.pc-inst{font-size:13px;color:rgba(255,255,255,.3);margin-top:4px;margin-bottom:20px}
+.pc-save{display:inline-flex;align-items:center;gap:7px;background:rgba(93,255,154,.08);border:1px solid rgba(93,255,154,.25);color:#5dff9a;font-size:12px;font-weight:700;padding:6px 16px;border-radius:50px;margin-bottom:24px;letter-spacing:.5px}
+.pc-body .cta-neon{width:100%;font-size:15px;padding:18px}
+.pc-note{font-size:12px;color:rgba(255,255,255,.2);text-align:center;margin-top:10px}
+/* stack rows inside card */
+.pc-stack{margin-bottom:24px}
+.pc-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px}
+.pc-row:last-child{border:none}
+.pc-rn{color:rgba(255,255,255,.6)}
+.pc-rv{color:rgba(255,255,255,.2);text-decoration:line-through;font-size:12px}
+.pc-total{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:rgba(192,57,138,.08);border-radius:10px;margin-bottom:20px;font-weight:700;font-size:13px}
+.pc-tl{color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.5px}
+.pc-tv{color:rgba(255,255,255,.25);text-decoration:line-through}
+/* bump */
+.bump{margin-top:20px;border:1px dashed rgba(232,201,122,.3);border-radius:14px;padding:18px;background:rgba(232,201,122,.04)}
+.bump-tag{font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.bump-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:5px}
+.bump-desc{font-size:12px;color:rgba(255,255,255,.4);line-height:1.65;margin-bottom:10px}
+.bump-price{font-size:15px;font-weight:800;color:var(--gold)}
+
+/* ─── GUARANTEE ──────────────────────────────── */
+.guar{max-width:640px;margin:0 auto;display:grid;grid-template-columns:100px 1fr;gap:32px;align-items:center;background:rgba(255,255,255,.03);border:1px solid rgba(192,57,138,.18);border-radius:22px;padding:44px}
+.g-seal{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--f),var(--fd));display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:var(--neon);flex-shrink:0}
+.g-n{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;line-height:1}
+.g-l{font-size:9px;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.75)}
+.g-txt h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:10px}
+.g-txt p{font-size:15px;color:rgba(255,255,255,.5);line-height:1.8}
+
+/* ─── FAQ ────────────────────────────────────── */
+.faq-list{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.faq-item{background:rgba(255,255,255,.03);border:1px solid rgba(192,57,138,.12);border-radius:14px;overflow:hidden;transition:border-color .25s}
+.faq-item.open{border-color:rgba(192,57,138,.45)}
+.faq-q{padding:20px 24px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:15px;gap:14px;transition:color .2s}
+.faq-item.open .faq-q{color:#f5d0e8}
+.faq-ico{width:26px;height:26px;border-radius:50%;border:1px solid rgba(192,57,138,.4);display:flex;align-items:center;justify-content:center;color:var(--f);font-size:18px;transition:transform .3s,background .2s;flex-shrink:0}
+.faq-item.open .faq-ico{transform:rotate(45deg);background:var(--f);color:#fff;border-color:var(--f)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-item.open .faq-a{max-height:260px}
+.faq-ai{padding:0 24px 20px;font-size:14px;color:rgba(255,255,255,.45);line-height:1.8}
+
+/* ─── FINAL CTA ──────────────────────────────── */
+.final{position:relative;padding:88px 20px;text-align:center;overflow:hidden}
+.final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 100% 80% at 50% 50%,rgba(192,57,138,.15) 0%,transparent 70%)}
+.final h2{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,54px);font-weight:900;line-height:1.15;margin-bottom:16px;position:relative;z-index:1}
+.final h2 em{font-style:italic;background:linear-gradient(135deg,#f5d0e8,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.final p{font-size:17px;color:rgba(255,255,255,.5);line-height:1.75;margin-bottom:44px;position:relative;z-index:1;max-width:560px;margin-left:auto;margin-right:auto}
+.final-acts{display:flex;flex-direction:column;align-items:center;gap:14px;position:relative;z-index:1}
+
+/* ─── FOOTER ─────────────────────────────────── */
+footer{background:#040008;border-top:1px solid rgba(192,57,138,.1);padding:32px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.foot-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,.35)}
+footer p{font-size:12px;color:rgba(255,255,255,.2)}
+footer a{color:rgba(255,255,255,.25)}
+
+/* ─── MOBILE STICKY ──────────────────────────── */
+.mob-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;padding:12px 16px;background:rgba(7,0,13,.97);backdrop-filter:blur(20px);border-top:1px solid rgba(192,57,138,.3)}
+.mob-bar a{display:block;text-align:center;background:linear-gradient(135deg,var(--f),var(--fd));color:#fff;font-weight:900;font-size:14px;padding:15px;border-radius:50px;text-decoration:none;box-shadow:var(--neon)}
+
+/* ─── RESPONSIVE ─────────────────────────────── */
+@media(max-width:768px){
+  .atos-grid{grid-template-columns:1fr}
+  .ato-full{grid-column:auto}
+  .guar{grid-template-columns:1fr;text-align:center;padding:32px 20px}
+  footer{padding:28px 20px;flex-direction:column;text-align:center}
+  .mob-bar{display:block}
+  .prog-steps{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div class="prog-wrap">
+  <div class="prog-inner">
+    <div class="prog-label">
+      <span class="prog-step done">✓ Dados preenchidos</span>
+      <span class="prog-pct" id="pct">0%</span>
+    </div>
+    <div class="prog-bar"><div class="prog-fill" id="progfill"></div></div>
+    <div class="prog-steps">
+      <div class="ps done"><div class="ps-dot"></div>Identificação</div>
+      <div class="ps done"><div class="ps-dot"></div>Pagamento</div>
+      <div class="ps active"><div class="ps-dot"></div>Oferta especial</div>
+      <div class="ps"><div class="ps-dot"></div>Acesso liberado</div>
+    </div>
+  </div>
+</div>
+
+<!-- URGÊNCIA -->
+<div class="urg">
+  <span class="urg-blink">⚠ AGUARDE!</span>
+  <span>&nbsp; Não feche essa página — essa oferta desaparece em instantes</span>
+</div>
+
+<!-- ═══ HOOK ═══════════════════════════════════ -->
+<section class="hook">
+  <div class="hook-tag">Oferta exclusiva — apenas para quem acabou de comprar</div>
+  <h1>
+    <span class="line1 rv">Antes de liberar seu acesso...</span>
+    <span class="line2 rv d1">você precisa ver isso.</span>
+  </h1>
+  <p class="hook-sub rv d2">
+    Você acaba de tomar a decisão certa. Agora existe <strong>uma única oportunidade</strong> de turbinar os seus resultados com o pacote completo que vai transformar não só o relacionamento — mas quem você é.
+  </p>
+  <div class="rv d3">
+    <a href="#comprar" class="cta-neon">QUERO O PACOTE COMPLETO <span class="arr">→</span></a>
+    <p class="cta-micro"><span>✓</span> Acesso imediato &nbsp;·&nbsp; <span>✓</span> Garantia 7 dias &nbsp;·&nbsp; <span>✓</span> Apenas R$49</p>
+  </div>
+</section>
+
+<!-- ═══ DIVISOR ════════════════════════════════ -->
+<div style="padding:0 20px 56px">
+  <div class="div-line"><div class="div-text">o que você vai receber</div></div>
+</div>
+
+<!-- ═══ ATOS / MÓDULOS ══════════════════════════ -->
+<section class="sec" style="padding-top:0">
+  <div class="container tc">
+    <span class="eyebrow rv">Os 5 Módulos do Sistema</span>
+    <h2 class="stitle rv d1">Cada módulo é um capítulo<br/>da sua <em>transformação</em></h2>
+    <p class="ssub rv d2">Do posicionamento interno até o comportamento externo. Uma jornada completa — em sequência, com intenção.</p>
+
+    <div class="atos-grid" style="margin-top:52px">
+
+      <!-- ATO I -->
+      <div class="ato rv d1">
+        <div class="ato-img-wrap">
+          <img class="ato-img" src="img/step1.png" alt="Módulo 1"/>
+          <div class="ato-num">MÓDULO I</div>
+        </div>
+        <div class="ato-body">
+          <h3>Identidade de Rainha</h3>
+          <div class="ato-topics">
+            <div class="ato-topic"><div class="ato-dot"></div><span>O erro que toda mulher comete depois do término — e como parar agora</span></div>
+            <div class="ato-topic"><div class="ato-dot"></div><span>Quem você é antes de ser a namorada dele</span></div>
+            <div class="ato-topic"><div class="ato-dot"></div><span>Posicionamento espiritual — a fundação que tudo depende</span></div>
+            <div class="ato-topic"><div class="ato-dot"></div><span>Exercício: Carta da Rainha — âncora emocional do sistema</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATO II -->
+      <div class="ato rv d2">
+        <div class="ato-img-wrap">
+          <img class="ato-img" src="img/step2.png" alt="Módulo 2"/>
+          <div class="ato-num">MÓDULO II</div>
+        </div>
+        <div class="ato-body">
+          <h3>A Imagem que Ele Não Esquece</h3>
+          <div class="ato-topics">
+            <div class="ato-topic"><div class="ato-dot"></div><span>Por que imagem é linguagem — não vaidade</span></div>
+            <div class="ato-topic"><div class="ato-dot"></div><span>O protocolo exato que ativa o mecanismo da saudade</span></div>
+            <div class="ato-topic"><div class="ato-dot"></div><span>Visagismo e presença — ajustes simples que mudam tudo</span></div>
+            <div class="ato-topic"><div class="ato-dot"></div><span>Autocuidado como mensagem: o que ele sente mesmo longe</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATO III -->
+      <div class="ato rv d3">
+        <div class="ato-img-wrap">
+          <img class="ato-img" src="img/step3.png" alt="Módulo 3"/>
+          <div class="ato-num">MÓDULO III</div>
+        </div>
+        <div class="ato-body">
+          <h3>O Comportamento Magnético</h3>
+          <div class="ato-topics">
+            <div class="ato-topic"><div class="ato-dot"></div><span>Os 5 comportamentos que destroem a atração — e como parar</span></div>
+            <div class="ato-topic"><div class="ato-dot"></div><span>O silêncio estratégico: quanto tempo, o que fazer durante</span></div>
+            <div class="ato-topic"><div class="ato-dot"></div><span>A arte de reaparecer sem parecer desesperada</span></div>
+            <div class="ato-topic"><div class="ato-dot"></div><span>Comunicação magnética — o que revelar e o que guardar</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATO IV -->
+      <div class="ato rv d4">
+        <div class="ato-img-wrap">
+          <img class="ato-img" src="img/hero.png" alt="Módulo 4"/>
+          <div class="ato-num">MÓDULO IV</div>
+        </div>
+        <div class="ato-body">
+          <h3>Os 3 Passos em Ação</h3>
+          <div class="ato-topics">
+            <div class="ato-topic"><div class="ato-dot"></div><span>O mapa completo da reconquista — fase por fase</span></div>
+            <div class="ato-topic"><div class="ato-dot"></div><span>Os sinais de que ele está sentindo falta</span></div>
+            <div class="ato-topic"><div class="ato-dot"></div><span>O momento do reencontro — postura, fala, energia</span></div>
+            <div class="ato-topic"><div class="ato-dot"></div><span>E se ele não voltar: por que você já ganhou</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATO V — full width -->
+      <div class="ato ato-full rv d1">
+        <div style="display:grid;grid-template-columns:340px 1fr">
+          <div class="ato-img-wrap" style="height:100%;min-height:220px">
+            <img class="ato-img" src="img/author.png" alt="Módulo 5" style="height:100%"/>
+            <div class="ato-num">MÓDULO V</div>
+          </div>
+          <div class="ato-body" style="display:flex;flex-direction:column;justify-content:center">
+            <h3>Magnetismo Permanente</h3>
+            <div class="ato-topics">
+              <div class="ato-topic"><div class="ato-dot"></div><span>Como não voltar a ser quem você era antes do término</span></div>
+              <div class="ato-topic"><div class="ato-dot"></div><span>Relacionamento 2.0 — entrando como rainha, sem repetir a história</span></div>
+              <div class="ato-topic"><div class="ato-dot"></div><span>Nunca mais precisar reconquistar ninguém</span></div>
+              <div class="ato-topic"><div class="ato-dot"></div><span>De rainha em formação para rainha formada — para sempre</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BONUS SEPARATOR -->
+      <div class="ato-full rv" style="padding:8px 0">
+        <div class="div-line"><div class="div-text" style="color:rgba(232,201,122,.4)">bônus exclusivos</div></div>
+      </div>
+
+      <!-- BONUS 1 -->
+      <div class="ato bonus rv d2">
+        <div class="ato-img-wrap">
+          <img class="ato-img" src="img/strip2.png" alt="Bônus 1"/>
+          <div class="ato-num">BÔNUS 1</div>
+        </div>
+        <div class="ato-body">
+          <h3>O Texto que Faz Ele Pensar em Você</h3>
+          <div class="ato-topics">
+            <div class="ato-topic"><div class="ato-dot"></div><span>Scripts de primeiro contato — quando e como iniciar</span></div>
+            <div class="ato-topic"><div class="ato-dot"></div><span>Scripts de resposta para quando ele aparecer primeiro</span></div>
+            <div class="ato-topic"><div class="ato-dot"></div><span>O que NUNCA enviar — lista completa com exemplos</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BONUS 2 -->
+      <div class="ato bonus rv d3">
+        <div class="ato-img-wrap">
+          <img class="ato-img" src="img/strip3.png" alt="Bônus 2"/>
+          <div class="ato-num">BÔNUS 2</div>
+        </div>
+        <div class="ato-body">
+          <h3>Rotina dos 7 Dias da Rainha</h3>
+          <div class="ato-topics">
+            <div class="ato-topic"><div class="ato-dot"></div><span>Protocolo diário completo — manhã, tarde e noite</span></div>
+            <div class="ato-topic"><div class="ato-dot"></div><span>Primeiros resultados ainda na semana 1</span></div>
+            <div class="ato-topic"><div class="ato-dot"></div><span>PDF completo dia a dia com ações práticas</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /atos-grid -->
+  </div>
+</section>
+
+<!-- ═══ FOTOS STRIP ════════════════════════════ -->
+<div style="display:grid;grid-template-columns:repeat(4,1fr);height:220px;overflow:hidden">
+  <div style="overflow:hidden"><img src="img/strip1.png" style="width:100%;height:100%;object-fit:cover;object-position:center top;filter:saturate(1.4) brightness(.7)"/></div>
+  <div style="overflow:hidden"><img src="img/cta.png" style="width:100%;height:100%;object-fit:cover;object-position:center top;filter:saturate(1.4) brightness(.7)"/></div>
+  <div style="overflow:hidden"><img src="img/modules.png" style="width:100%;height:100%;object-fit:cover;object-position:center top;filter:saturate(1.4) brightness(.7)"/></div>
+  <div style="overflow:hidden"><img src="img/strip3.png" style="width:100%;height:100%;object-fit:cover;object-position:center top;filter:saturate(1.4) brightness(.7)"/></div>
+</div>
+
+<!-- ═══ PREÇO ══════════════════════════════════ -->
+<section class="price-sec" id="comprar">
+  <div class="container tc">
+    <span class="eyebrow gold rv">Investimento</span>
+    <h2 class="stitle rv d1">Rainha Magnética <em>Completo</em></h2>
+    <p class="ssub rv d2" style="margin-bottom:52px">5 módulos + 2 bônus + acesso imediato. Valor total R$1.049 — por apenas R$49.</p>
+
+    <div class="price-card rv d3">
+      <div class="pc-head">
+        <h3>Rainha Magnética — Pacote Completo</h3>
+        <p>5 módulos · 2 bônus · acesso imediato · sem prazo de expiração</p>
+      </div>
+      <div class="pc-body">
+        <div class="pc-stack">
+          <div class="pc-row"><span class="pc-rn">Módulo 1 — Identidade de Rainha</span><span class="pc-rv">R$197</span></div>
+          <div class="pc-row"><span class="pc-rn">Módulo 2 — A Imagem que Ele Não Esquece</span><span class="pc-rv">R$197</span></div>
+          <div class="pc-row"><span class="pc-rn">Módulo 3 — Comportamento Magnético</span><span class="pc-rv">R$197</span></div>
+          <div class="pc-row"><span class="pc-rn">Módulo 4 — Os 3 Passos em Ação</span><span class="pc-rv">R$197</span></div>
+          <div class="pc-row"><span class="pc-rn">Módulo 5 — Magnetismo Permanente</span><span class="pc-rv">R$97</span></div>
+          <div class="pc-row"><span class="pc-rn">Bônus 1 — O Texto que Faz Ele Pensar</span><span class="pc-rv">R$97</span></div>
+          <div class="pc-row"><span class="pc-rn">Bônus 2 — Rotina dos 7 Dias da Rainha</span><span class="pc-rv">R$67</span></div>
+        </div>
+        <div class="pc-total"><span class="pc-tl">Valor total</span><span class="pc-tv">R$1.049</span></div>
+        <div class="pc-was">Seu investimento hoje</div>
+        <div class="pc-price"><sup>R$</sup>49</div>
+        <div class="pc-inst">ou 12x de R$4,90 no cartão</div>
+        <div><span class="pc-save">✓ Você economiza R$1.000</span></div>
+        <a href="LINK_CHECKOUT_AQUI" class="cta-neon gold" style="width:100%;justify-content:center;margin-bottom:8px">EU QUERO O RAINHA MAGNÉTICO <span class="arr">→</span></a>
+        <p class="pc-note">Acesso imediato · Pagamento seguro · Garantia 7 dias</p>
+        <div class="bump">
+          <div class="bump-tag">✦ Adicione ao pedido</div>
+          <div class="bump-title">Meditação — Retorno ao Jardim</div>
+          <p class="bump-desc">Meditação guiada de reconexão com sua essência feminina. O ponto de partida para ativar o posicionamento espiritual antes de qualquer passo externo.</p>
+          <div class="bump-price">+ R$19,90</div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#" class="no-thanks rv" style="margin-top:32px">Não obrigada, não quero essa oportunidade.</a>
+  </div>
+</section>
+
+<!-- ═══ GARANTIA ═══════════════════════════════ -->
+<section class="sec">
+  <div class="container tc">
+    <span class="eyebrow rv">Sem risco</span>
+    <h2 class="stitle rv d1">Garantia total de <em>7 dias</em></h2>
+    <br/>
+    <div class="guar rv d2">
+      <div class="g-seal"><div class="g-n">7</div><div class="g-l">dias</div></div>
+      <div class="g-txt">
+        <h3>Risco zero da sua parte</h3>
+        <p>Se você acessar o Rainha Magnética, assistir as aulas e não sentir que valeu cada centavo — me manda uma mensagem e eu devolvo <strong style="color:#f5d0e8">100% do seu dinheiro</strong>. Sem perguntas. Sem burocracia. A única pessoa arriscando aqui sou eu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ════════════════════════════════════ -->
+<section class="sec" style="padding-top:0">
+  <div class="container tc">
+    <span class="eyebrow rv">Dúvidas</span>
+    <h2 class="stitle rv d1">Perguntas sobre o <em>Rainha Magnética</em></h2>
+    <br/>
+    <div class="faq-list">
+      <div class="faq-item rv d1">
+        <div class="faq-q">Funciona mesmo sem contato faz semanas? <div class="faq-ico">+</div></div>
+        <div class="faq-a"><div class="faq-ai">Sim. O período sem contato é o momento ideal para aplicar os 3 passos — você trabalha em si mesma enquanto cria o espaço certo para ele sentir sua falta. Os dois primeiros módulos não exigem nenhum contato.</div></div>
+      </div>
+      <div class="faq-item rv d2">
+        <div class="faq-q">E se ele já estiver com outra pessoa? <div class="faq-ico">+</div></div>
+        <div class="faq-a"><div class="faq-ai">O sistema funciona justamente para essa situação. Quando você aplica os 3 passos, você muda a dinâmica. Homens frequentemente se comparam, sentem nostalgia e reavaliam suas escolhas quando percebem o que perderam.</div></div>
+      </div>
+      <div class="faq-item rv d3">
+        <div class="faq-q">Preciso ter contato com ele para aplicar? <div class="faq-ico">+</div></div>
+        <div class="faq-a"><div class="faq-ai">Não. Os dois primeiros módulos são completamente independentes de contato. O terceiro módulo te dá clareza sobre quando e como ter esse contato — sem desperdiçar a oportunidade.</div></div>
+      </div>
+      <div class="faq-item rv d4">
+        <div class="faq-q">Quando recebo o acesso? <div class="faq-ico">+</div></div>
+        <div class="faq-a"><div class="faq-ai">Na hora. Assim que a compra for confirmada, você recebe o link no e-mail. Em menos de 2 minutos você já está dentro do Rainha Magnética.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ══════════════════════════════ -->
+<div class="final">
+  <h2 class="rv">Essa janela fecha.<br/><em>Essa decisão não volta.</em></h2>
+  <p class="rv d1">Você está a um clique de se tornar uma mulher que ninguém consegue tirar da cabeça.</p>
+  <div class="final-acts rv d2">
+    <a href="LINK_CHECKOUT_AQUI" class="cta-neon" style="font-size:18px;padding:22px 60px">EU QUERO O RAINHA MAGNÉTICO <span class="arr">→</span></a>
+    <p style="font-size:13px;color:rgba(255,255,255,.25)">Acesso imediato · Garantia 7 dias · R$49</p>
+    <a href="#" class="no-thanks">Não obrigada, vou abrir mão dessa oportunidade.</a>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═════════════════════════════════ -->
+<footer>
+  <div class="foot-logo">Filhas de Eva</div>
+  <p>© 2026 Filhas de Eva · <a href="#">Privacidade</a> · <a href="#">Termos</a> · <a href="#">Suporte</a></p>
+  <p style="max-width:280px;text-align:right;font-size:11px;color:rgba(255,255,255,.12);line-height:1.6">Produto digital. Resultados podem variar. Este site não tem relação com Facebook ou Instagram.</p>
+</footer>
+
+<!-- MOBILE STICKY -->
+<div class="mob-bar">
+  <a href="#comprar">👑 Rainha Magnética — R$49 · Garantir acesso agora</a>
+</div>
+
+<script>
+// PROGRESS BAR ANIMATION
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('progfill').style.width = '75%';
+    document.getElementById('pct').textContent = '75%';
+  }, 400);
+});
+
+// FAQ
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const it = q.parentElement, open = it.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!open) it.classList.add('open');
+  });
+});
+
+// REVEAL
+const obs = new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.isIntersecting) e.target.classList.add('on');
+}), { threshold: 0.08 });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+// "NÃO OBRIGADA" → skip para o acesso
+document.querySelectorAll('.no-thanks').forEach(el => {
+  el.addEventListener('click', e => {
+    e.preventDefault();
+    if (confirm('Tem certeza? Essa oferta não estará disponível depois.')) {
+      window.location.href = 'LINK_AREA_MEMBROS';
+    }
+  });
+});
+</script>
+</body>
+</html>
